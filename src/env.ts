@@ -1,0 +1,1 @@
+export const KAKAO_SDK_JS_KEY = "05d8e76b5c93420c244260956d5fc4c1"
