@@ -44,17 +44,20 @@ export const BGM = () => {
       startedRef.current = true
       const audio = audioRef.current
 
-      audio.volume = 0.01
-      audio.loop = true
+      setTimeout(() => {
+        audio.volume = 0.01
+        audio.loop = true
 
-      audio.play()
-        .then(() => {
-          startFadeIn()
-          setOn(true)
-        })
-        .catch(() => {
-          // 재생 실패 시 무시 (iOS 예외 대비)
-        })
+        audio.play()
+          .then(() => {
+            startFadeIn()
+            setOn(true)
+          })
+          .catch(() => {
+            // 재생 실패 시 무시 (iOS 예외 대비)
+          })
+      }, 1000)
+      
     }
 
     // 클릭 / 터치
