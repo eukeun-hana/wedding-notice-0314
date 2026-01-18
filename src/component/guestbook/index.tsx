@@ -60,7 +60,6 @@ export default function GuestBook() {
   return (
     <LazyDiv className="card guestbook">
       <h2 className="english">Guest Book</h2>
-      <div className="break" />
 
       {posts.map((post) => (
         <div key={post.id} className="post">
