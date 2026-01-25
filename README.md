@@ -1,1 +1,1 @@
-# notice-wedding
+# wedding-notice
