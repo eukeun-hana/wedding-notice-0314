@@ -53,10 +53,10 @@ export const GALLERY_THUMBS = [
   t2,
   t3,
   t4,
-  t5,
+  //t5,
   t6,
-  t7,
-  t8,
+  //t7,
+  //t8,
   t9,
   t10,
   t11,
@@ -65,10 +65,10 @@ export const GALLERY_THUMBS = [
   t14,
   t15,
   t16,
-  t17,
+  //t17,
   t18,
   t19,
-  t20
+  //t20
 ]
 
 export const GALLERY_FULL = [
@@ -76,10 +76,10 @@ export const GALLERY_FULL = [
   f2,
   f3,
   f4,
-  f5,
+  //f5,
   f6,
-  f7,
-  f8,
+  //f7,
+  //f8,
   f9,
   f10,
   f11,
@@ -88,8 +88,9 @@ export const GALLERY_FULL = [
   f14,
   f15,
   f16,
-  f17,
+  //f17,
   f18,
   f19,
-  f20]
+  //f20
+]
 
