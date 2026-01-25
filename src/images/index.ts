@@ -18,6 +18,8 @@ import t15 from "./thumb/image15.webp" //확정
 import t16 from "./thumb/image16.webp" //확정
 import t17 from "./thumb/image17.webp"
 import t18 from "./thumb/image18.webp"
+import t19 from "./thumb/image19.webp"
+import t20 from "./thumb/image20.webp"
 
 
 //블랭크
@@ -41,7 +43,8 @@ import f15 from "./full/image15.webp" //확정
 import f16 from "./full/image16.webp" //확정
 import f17 from "./full/image17.webp"
 import f18 from "./full/image18.webp"
-
+import f19 from "./full/image19.webp"
+import f20 from "./full/image20.webp"
 
 export const COVER_IMAGE = coverImage
 
@@ -49,7 +52,7 @@ export const GALLERY_THUMBS = [
   t1,
   t2,
   t3,
-  //t4,
+  t4,
   t5,
   t6,
   t7,
@@ -60,21 +63,19 @@ export const GALLERY_THUMBS = [
   t12,
   t13,
   t14,
-  //t15,
+  t15,
   t16,
   t17,
   t18,
-  b,
-  b,
-  b,
-  b
+  t19,
+  t20
 ]
 
 export const GALLERY_FULL = [
   f1,
   f2,
   f3,
-  //f4,
+  f4,
   f5,
   f6,
   f7,
@@ -85,13 +86,10 @@ export const GALLERY_FULL = [
   f12,
   f13,
   f14,
-  //f15,
+  f15,
   f16,
   f17,
   f18,
-  b,
-  b,
-  b,
-  b
-]
+  f19,
+  f20]
 
