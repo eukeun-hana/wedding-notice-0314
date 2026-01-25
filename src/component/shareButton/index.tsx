@@ -9,9 +9,7 @@ import { LazyDiv } from "../lazyDiv"
 import { useKakao } from "../store"
 
 const baseUrl = import.meta.env.BASE_URL
-console.log("protocol ::: " + window.location.protocol);
-console.log("host ::: " + window.location.host);
-console.log("url ::: " + baseUrl);
+
 export const ShareButton = () => {
   const kakao = useKakao()
   return (
