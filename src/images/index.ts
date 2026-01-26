@@ -1,6 +1,10 @@
 //커버
 import coverImage from "./cover.webp"
 
+//블랭크
+import b from "./blank.png"
+
+
 //썸네일
 import t1 from "./thumb/image1.webp" 
 import t2 from "./thumb/image2.webp" 
@@ -49,15 +53,16 @@ export const GALLERY_THUMBS = [
   t1, t2, t3, t4,
   t14, t5, t17, t6, 
   t11, t12,  t9, t10, 
-  t7, t8,t18, t15,
-  //t17, t18, t19
+  t7, t8, b, t15,
+  //t7, t8, t18, t15,
+  
 ]
 
 export const GALLERY_FULL = [
   f1, f2, f3, f4,
   f14,f5, f17, f6, 
-   f11, f12,f9, f10,
-  f7, f8, f18, f15,
-  //f17, f18,
+  f11, f12,f9, f10,
+  f7, f8, b, f15,
+  //f7, f8, f18, f15,
 ]
 
