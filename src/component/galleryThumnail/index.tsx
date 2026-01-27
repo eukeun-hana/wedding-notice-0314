@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react" // ✅ (추가) useRef
+import { useState, useRef } from "react" // ✅ useRef 추가
 import { LazyDiv } from "../lazyDiv"
 import "./index.scss"
 import ArrowLeft from "../../icons/angle-left-sm.svg?react"
@@ -17,44 +17,44 @@ export const GalleryThum = () => {
     setViewerIndex((viewerIndex + 1) % GALLERY_FULL.length)
   }
 
-  //(추가) 스와이프 시작점 저장용 ref (원본 로직 건드리지 않음)
-  const startXRef = useRef<number | null>(null)
-  const startYRef = useRef<number | null>(null)
+  // ✅ (추가) 스와이프 시작 좌표 저장
+  const touchStartXRef = useRef<number | null>(null)
+  const touchStartYRef = useRef<number | null>(null)
 
-  //(추가) 스와이프 감도(원하면 30~60 사이로 조절)
+  // ✅ (추가) 스와이프 감도(원하면 30~60 조절)
   const SWIPE_THRESHOLD = 40
 
-  //(추가) 포인터 다운: 시작 좌표 저장
-  const handlePointerDown = (e: React.PointerEvent) => {
-    // 오버레이가 닫힌 상태면 의미 없음
+  // ✅ (추가) 터치 시작
+  const handleTouchStart = (e: React.TouchEvent) => {
     if (viewerIndex === null) return
-
-    startXRef.current = e.clientX
-    startYRef.current = e.clientY
+    const t = e.touches[0]
+    touchStartXRef.current = t.clientX
+    touchStartYRef.current = t.clientY
   }
 
-  //(추가) 포인터 업: 이동 거리 계산 후 prev/next 호출
-  const handlePointerUp = (e: React.PointerEvent) => {
+  // ✅ (추가) 터치 종료 → dx로 prev/next
+  const handleTouchEnd = (e: React.TouchEvent) => {
     if (viewerIndex === null) return
-    if (startXRef.current == null || startYRef.current == null) return
+    if (touchStartXRef.current == null || touchStartYRef.current == null) return
 
-    const dx = e.clientX - startXRef.current
-    const dy = e.clientY - startYRef.current
+    const t = e.changedTouches[0]
+    const dx = t.clientX - touchStartXRef.current
+    const dy = t.clientY - touchStartYRef.current
 
     // 다음 스와이프를 위해 초기화
-    startXRef.current = null
-    startYRef.current = null
+    touchStartXRef.current = null
+    touchStartYRef.current = null
 
-    // ✅ 세로 이동이 더 크면 스와이프가 아니라 "스크롤/탭"로 보고 무시 (오작동 방지)
+    // ✅ 세로 움직임이 더 크면 스와이프가 아닌 것으로 보고 무시(오작동 방지)
     if (Math.abs(dy) > Math.abs(dx)) return
 
-    // ✅ 오른쪽으로 드래그 = 이전 사진
+    // ✅ 오른쪽으로 스와이프 = 이전 사진
     if (dx > SWIPE_THRESHOLD) {
       prevImage()
       return
     }
 
-    // ✅ 왼쪽으로 드래그 = 다음 사진
+    // ✅ 왼쪽으로 스와이프 = 다음 사진
     if (dx < -SWIPE_THRESHOLD) {
       nextImage()
       return
@@ -90,40 +90,27 @@ export const GalleryThum = () => {
         <div
           className="photo-viewer-overlay"
           onClick={() => setViewerIndex(null)}
-          // ✅ (추가) 스와이프 이벤트: 오버레이에서 좌우 드래그로 prev/next
-          // - 버튼 이동 UX는 그대로 유지
-          // - 스크롤바는 생기지 않음(overflow 스크롤을 사용하지 않음)
-          onPointerDown={handlePointerDown}
-          onPointerUp={handlePointerUp}
+          // ✅ (추가) 스와이프 감지(모바일에서 제일 확실)
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <img
             src={GALLERY_FULL[viewerIndex]}
             className="photo-viewer-image"
             onClick={(e) => e.stopPropagation()}
             decoding="async"
-            // ✅ (추가) 이미지 위에서도 스와이프가 잘 먹도록(overlay 클릭 닫힘 방지)
-            onPointerDown={(e) => {
+            // ✅ (추가) 이미지 위에서 스와이프해도 overlay의 onClick(닫기)로 안 흘러가게
+            onTouchStart={(e) => {
               e.stopPropagation()
-              handlePointerDown(e)
+              handleTouchStart(e)
             }}
-            onPointerUp={(e) => {
+            onTouchEnd={(e) => {
               e.stopPropagation()
-              handlePointerUp(e)
+              handleTouchEnd(e)
             }}
           />
 
-          <div
-            className="carousel-control"
-            // ✅ (추가) 컨트롤 레이어에서도 스와이프 가능하게(화살표 영역이 넓어서 여기서도 잡히게)
-            onPointerDown={(e) => {
-              e.stopPropagation()
-              handlePointerDown(e)
-            }}
-            onPointerUp={(e) => {
-              e.stopPropagation()
-              handlePointerUp(e)
-            }}
-          >
+          <div className="carousel-control">
             <div
               className="control left"
               onClick={(e) => {
