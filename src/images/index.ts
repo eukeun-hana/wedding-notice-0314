@@ -44,7 +44,7 @@ export const GALLERY_FULL = [
   `${IMG_BASE}/image4.webp`, `${IMG_BASE}/image14.webp`, `${IMG_BASE}/image5.webp`,
   `${IMG_BASE}/image17.webp`, `${IMG_BASE}/image6.webp`, `${IMG_BASE}/image11.webp`,
   `${IMG_BASE}/image12.webp`, `${IMG_BASE}/image9.webp`, `${IMG_BASE}/image10.webp`,
-  `${IMG_BASE}/image7.webp`, `${IMG_BASE}/image8.webp`, `${IMG_BASE}/image15.webp`,
-  
+  `${IMG_BASE}/image7.webp`, `${IMG_BASE}/image8.webp`, `${IMG_BASE}/image15.webp`, 
+    
 ]
 
