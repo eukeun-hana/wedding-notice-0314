@@ -38,6 +38,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* ✅ (추가) 오버레이 위에서 "가로 제스처"를 브라우저가 허용하도록
+     - 버튼으로 넘기던 기존 UX는 유지
+     - 여기에 pan-x를 주면, 터치 드래그/스와이프가 막히는 경우를 줄여줌
+     - (주의) JS에서 touchmove를 preventDefault로 막고 있으면 JS도 수정 필요 */
+  touch-action: pan-x;
+
+  /* ✅ (추가) iOS에서 스와이프/스크롤 튐 방지(선택) */
+  overscroll-behavior: none;
 }
 
 .photo-viewer-image {
@@ -45,7 +54,13 @@
   max-height: 85vh;
   border-radius: 10px;
   position: relative;
-  
+
+  /* ✅ (추가) 이미지 영역에서도 가로 스와이프 허용 */
+  touch-action: pan-x;
+
+  /* ✅ (추가) 길게 눌러 이미지 드래그/선택 방지(스와이프 UX 방해 줄임) */
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .photo-viewer-close {
@@ -59,6 +74,9 @@
   padding: 6px 12px;
   border-radius: 50%;
   cursor: pointer;
+
+  /* ✅ (추가) 버튼은 탭 조작이 즉시 먹도록 */
+  touch-action: manipulation;
 }
 
 .carousel-control {
@@ -71,12 +89,24 @@
   justify-content: space-between;
   align-items: center;
 
+  /* ✅ (추가) 컨트롤 레이어가 터치 제스처를 "먹어버려서" 스와이프가 안 되는 경우가 있음.
+     - 기본은 레이어 자체는 터치 이벤트를 가로채지 않게 하고(pointer-events: none)
+     - 실제 클릭 영역(.control)만 다시 pointer-events: auto로 열어줌 */
+  pointer-events: none;
+
   .control {
-    margin:1rem;
+    margin: 1rem;
     height: 100%;
     width: 30%;
     display: flex;
     align-items: center;
+
+    /* ✅ (추가) 실제 클릭/탭 영역만 이벤트 받기 */
+    pointer-events: auto;
+
+    /* ✅ (추가) 컨트롤 영역에서도 가로 제스처 허용 */
+    touch-action: pan-x;
+
     &.left {
       justify-content: flex-start;
     }
@@ -91,4 +121,16 @@
       }
     }
   }
+}
+
+/* ===== (추가) 스크롤바가 "생기지 않게" 하는 안전장치 =====
+   - 지금 구조는 스크롤 컨테이너가 없으면 스크롤바가 안 생기지만,
+     추후에 JS/구조 변경으로 overflow-x가 생겨도 스크롤바가 보이지 않게 숨김 처리 */
+.photo-viewer-overlay,
+.photo-viewer-image {
+  scrollbar-width: none; /* Firefox */
+}
+.photo-viewer-overlay::-webkit-scrollbar,
+.photo-viewer-image::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
