@@ -1,4 +1,5 @@
 import { Cover } from "./component/cover"
+import { Location } from "./component/location"
 import "./App.scss"
 import { Invitation } from "./component/invitation"
 import { BGEffect } from "./component/bgEffect"
@@ -24,6 +25,10 @@ function App() {
           <Cover />
           {/* 모시는 글 */}
           <Invitation />
+        </LazyDiv>
+        <LazyDiv className="card-group">
+          {/* 오시는길 */}
+          <Location />
         </LazyDiv>
 
         <LazyDiv className="card-group">
