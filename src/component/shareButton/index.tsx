@@ -31,7 +31,7 @@ export const ShareButton = () => {
             content: {
               title: `${GROOM_FULLNAME} ❤️ ${BRIDE_FULLNAME} 결혼합니다.`,
               description:
-                WEDDING_DATE.format(WEDDING_DATE_FORMAT) + "\n" + LOCATION,
+                WEDDING_DATE.format(WEDDING_DATE_FORMAT),
               imageUrl:
                 window.location.protocol +
                 "//" +
