@@ -146,6 +146,7 @@ const NaverMap = () => {
           <img src={knaviIcon} alt="kakao-navi-icon" />
           카카오 내비
         </button>
+       
       </div>
     </>
   )

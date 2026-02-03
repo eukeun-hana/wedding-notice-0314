@@ -19,6 +19,9 @@ export const useNaver = () => {
 
     if (!document.querySelector(`script[src="${NAVER_MAP_URL}"]`)) {
       const script = document.createElement("script")
+      console.log("typeof setNaver:", typeof setNaver)
+console.log("script element:", script)
+console.log("typeof script.addEventListener:", typeof (script as any).addEventListener)
       script.src = NAVER_MAP_URL
       document.head.appendChild(script)
       script.addEventListener("load", () => {
