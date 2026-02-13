@@ -316,7 +316,7 @@ const DeleteGuestBookModal = ({
   )
 }
 
-const PAGE_SIZE = 5
+const PAGE_SIZE = 3
 
 const AllGuestBookModal = ({
   onDeleted,
